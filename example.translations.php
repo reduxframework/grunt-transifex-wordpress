@@ -136,10 +136,10 @@
         esc_html_x() - return translated string with context escaped to be HTML
     */
 
-    $translated_html = esc_html__( "<span>Test here</span>", 'textdomain' );
+    $translated_html = esc_html__( "Test here", 'textdomain' );
     echo $translated_html;
 
-    esc_html_e( "<span>Test here two</span>", 'textdomain' );
+    esc_html_e( "Test here two", 'textdomain' );
 
     $translated_html_context = esc_html_x( 'testing', 'test1', 'textdomain' );
     echo $translated_html_context;
