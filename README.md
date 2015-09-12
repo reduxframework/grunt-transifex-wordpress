@@ -11,19 +11,22 @@ A set of grunt tasks to integrate i18n tools and Transifex to your WordPress plu
 
 * Extras: Builds a zip folder of all your files - ready to use
 
+* Bonus: A set of others grunt.js ready to use
+
 ## Requirements
 
 * Node.js - [Install Node.js](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager)
 * Grunt-cli and Grunt (`npm install grunt-cli -g`)
 * Transifex Client - [Install tx client](http://docs.transifex.com/developer/client/setup)
 * Gettext - [Install Gettext](https://www.gnu.org/software/gettext/) or `brew install gettext` -> [Homebrew formula for OS X](http://brewformulas.org/Gettext)
-* [PHP CLI](http://www.php.net/manual/en/features.commandline.introduction.php) in your system path.
 
 ## Getting started
 
 If you haven't used [Grunt](http://gruntjs.com/) before, check out Chris Coyier's post on [getting started with Grunt](http://24ways.org/2013/grunt-is-not-weird-and-hard/).
 
-And for more WP-Grunt tools check out Devin Price's post [Using Grunt with WordPress Themes](http://wptheming.com/2014/05/grunt-wordpress-themes/).
+And for more WP-Grunt optimization [Supercharging your Gruntfile](http://www.html5rocks.com/en/tutorials/tooling/supercharging-your-gruntfile/).
+
+All Grunt configuration are separated into different files already setup for you and almost all Grunt config setups are done in the package.json file
 
 Clone this repo, cd to the directory, run `npm install` to install the necessary packages.
 
@@ -57,42 +60,34 @@ More info about [setting up your Transifex client](http://docs.transifex.com/dev
 
 In .tx->config replace the project_slug and the pot_slug by your own Transifex project data.
 
-### Creates pot
+### packages.json
 
-In your Gruntfile.js, replace in the section named `makepot` the data below:
+All variables are setup in this file. Change all settings to reflect your own project infos. Nothing complicated
 
-```js
-makepot: {
-	target: {
-		options: {
-			mainFile: 'foo.php', // Main project file.
-			potFilename: 'foo.pot', // Name of the POT file.
-			type: 'wp-plugin', // Type of project (wp-plugin or wp-theme).
-			updateTimestamp: true, // Whether the POT-Creation-Date should be updated without other changes.
-			updatePoFiles: false // Whether to update PO files in the same directory as the POT file.
-		}
-	}
-}
-```
+#### pot
 
-### Checktexdomain
-
-In your Gruntfile.js, replace in the section named `checktextdomain` the text_domain option:
+In your package.json, replace in the section named `pot` the data below:
 
 ```js
-checktextdomain: {
-			options:{
-				text_domain: 'foo',  //Name of Your textdomain
+ "pot": {
+    "type": "wp-plugin",
+    "textdomain": "foo",
+    "src": "foo.php",
+    "header": {
+      "bugs": "http://wp-translations.org/",
+      "team": "WP-Translations <fxb@wp-translations.org>",
+      "last_translator": "WP-Translations <fxb@wp-translations.org>"
+    }
+  },
 ```
-
 ### Creates pot and pushes it to Transifex
 
-In your Gruntfile.js, replace in the section named `exec`  the -- minimum percentage value if needed:
+In your grunt > exec.js, replace in the section named `exec`  the -- minimum percentage value if needed:
 
 ```js
 exec: {
 	txpull: { // Pull Transifex translation - grunt exec:txpull
-		cmd: 'tx pull -a --minimum-perc=100' // Change the percentage with --minimum-perc=yourvalue
+		cmd: 'tx pull -a -f --minimum-perc=100' // Change the percentage with --minimum-perc=yourvalue
 	}
 }
 ```
@@ -107,7 +102,7 @@ That's it you're ready to `Grunt it` now with those commands!
 
 ### Check textdomain and makepot
 
-`grunt go-pot`
+`grunt build:i18n`
 
 ### Creates pot and pushes it to Transifex
 
@@ -123,7 +118,7 @@ That's it you're ready to `Grunt it` now with those commands!
 
 ### Thanks to:
 
-[grunt-wp-i18n](https://github.com/cedaro/grunt-wp-i18n) by Brady Vercher to generate the .pot files.
+[grunt-wp-i18n](https://github.com/cedaro/grunt-wp-i18n) by Bradley Vercher to generate the .pot files.
 
 [grunt-potomo](https://github.com/axisthemes/grunt-potomo) by AxisThemes to generate automatically the .mo files.
 
