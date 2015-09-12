@@ -111,7 +111,7 @@ That's it you're ready to take over the world with these commands!
 `grunt tx-pull`
 
 ### Automatically change all textdomains in the project with the declared pot.textdomain value
-*BE SURE to include all possible textdomains in your project OR you'll get duplicated domains added to functions that will mess things up.*
+*BE SURE to include all possible textdomains in your project to the grunt/addtextdomain.js file under updateDomains OR you'll get duplicated domains added to functions that will mess things up.*
 
 `grunt updatedomains`
 
