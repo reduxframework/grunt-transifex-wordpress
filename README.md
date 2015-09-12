@@ -1,4 +1,4 @@
-[![License](https://img.shields.io/badge/license-GPL--2.0%2B-red.svg?style=flat-square)](http://www.gnu.org/licenses/gpl-2.0.html) [![Tool](https://img.shields.io/badge/wp--translations-used-brightgreen.svg?style=flat-square)] (http://wp-translations.org)
+[![License](https://img.shields.io/badge/license-GPL--3.0%2B-red.svg?style=flat-square)](http://www.gnu.org/licenses/gpl-2.0.html)
 # Grunt Transifex WordPress #
 
 A set of grunt tasks to integrate i18n tools and Transifex to your WordPress plugin/theme Grunt workflow.
