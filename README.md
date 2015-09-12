@@ -3,15 +3,15 @@
 
 A set of grunt tasks to integrate i18n tools and Transifex to your WordPress plugin/theme Grunt workflow.
 
-* Creates pot
+* Create a `.pot` file
 
-* Creates pot and pushes it to Transifex
+* Create a `.pot` file and push it to Transifex
 
-* Pulls translations from Transifex and creates the .mo files
+* Pulls translations from Transifex and create the needed .mo files
 
-* Extras: Builds a zip folder of all your files - ready to use
+* Compile: Builds a zip folder of all your files - ready to deploy
 
-* Bonus: A set of others grunt.js ready to use
+*Also light support for WebTranslateIt if preferred.*
 
 ## Requirements
 
@@ -21,7 +21,6 @@ A set of grunt tasks to integrate i18n tools and Transifex to your WordPress plu
 * Gettext - [Install Gettext](https://www.gnu.org/software/gettext/) or `brew install gettext` -> [Homebrew formula for OS X](http://brewformulas.org/Gettext)
 
 ## Getting started
-
 If you haven't used [Grunt](http://gruntjs.com/) before, check out Chris Coyier's post on [getting started with Grunt](http://24ways.org/2013/grunt-is-not-weird-and-hard/).
 
 And for more WP-Grunt optimization [Supercharging your Gruntfile](http://www.html5rocks.com/en/tutorials/tooling/supercharging-your-gruntfile/).
@@ -31,7 +30,7 @@ All Grunt configuration are separated into different files already setup for you
 Clone this repo, cd to the directory, run `npm install` to install the necessary packages.
 
 ```
-git clone https://github.com/WP-Translations/grunt-transifex-wordpress
+git clone https://github.com/reduxframework/grunt-transifex-wordpress
 cd grunt-transifex-wordpress
 npm install
 grunt
@@ -58,59 +57,63 @@ More info about [setting up your Transifex client](http://docs.transifex.com/dev
 
 #### TX client config file
 
-In .tx->config replace the project_slug and the pot_slug by your own Transifex project data.
+In .tx->config replace the `project_slug` and the `pot_slug` by your own Transifex project and organization.
 
 ### packages.json
 
-All variables are setup in this file. Change all settings to reflect your own project infos. Nothing complicated
+All variables are setup in this file. Change all settings to reflect your own project details. Should be pretty strait forward.
 
-#### pot
+#### package.json customizations
 
 In your package.json, replace in the section named `pot` the data below:
 
 ```js
- "pot": {
-    "type": "wp-plugin",
-    "textdomain": "foo",
-    "src": "foo.php",
+  "directories": {
+    "js": "",
+    "sass": "",
+    "css": "",
+    "build": "./build",
+    "languages": "./languages"
+  },
+  "pull_percentage": "75",
+  "pot": {
+    "type": "wp-plugin", // wp-plugin or wp-theme
+    "textdomain": "example-textdomain", // Your custom textdomain
+    "default_lang": "en_US", // Default language of your project
+    "include": [], // Files you want to include outside of this directory
+    "exclude": [], // Files you want to exclude from within this directory
     "header": {
-      "bugs": "http://wp-translations.org/",
-      "team": "WP-Translations <fxb@wp-translations.org>",
-      "last_translator": "WP-Translations <fxb@wp-translations.org>"
+      "bugs": "http://dovy.io/", // Header for your pot file
+      "team": "Dovy.io <me@dovy.io>", // Team name
+      "last_translator": "Dovy.io <me@dovy.io>" // Last person to update the pot
     }
   },
 ```
-### Creates pot and pushes it to Transifex
 
-In your grunt > exec.js, replace in the section named `exec`  the -- minimum percentage value if needed:
-
-```js
-exec: {
-	txpull: { // Pull Transifex translation - grunt exec:txpull
-		cmd: 'tx pull -a -f --minimum-perc=100' // Change the percentage with --minimum-perc=yourvalue
-	}
-}
-```
-
-That's it you're ready to `Grunt it` now with those commands!
+That's it you're ready to take over the world with these commands!
 
 ## How it works
 
-### Creates pot
+### Generate `.pot` file
 
 `grunt makepot`
 
-### Check textdomain and makepot
+### Check/replace textdomains and run makepot
 
 `grunt build:i18n`
 
-### Creates pot and pushes it to Transifex
+### Generate `.pot` file and push it to Transifex
 
 `grunt tx-push`
 
-### Pulls translations from Transifex and creates the .mo files
+### Pulls translations from Transifex and create the .mo files
 
 `grunt tx-pull`
+
+### Automatically change all textdomains in the project with the declared pot.textdomain value
+*BE SURE to include all possible textdomains in your project OR you'll get duplicated domains added to functions that will mess things up.*
+
+`grunt updatedomains`
 
 ### Extras: Builds a zip folder of all your files - ready to use
 
@@ -118,7 +121,8 @@ That's it you're ready to `Grunt it` now with those commands!
 
 ### Thanks to:
 
-[grunt-wp-i18n](https://github.com/cedaro/grunt-wp-i18n) by Bradley Vercher to generate the .pot files.
+
+[grunt-transifex-wordpress](https://github.com/WP-Translations/grunt-transifex-wordpress) by FX Bénard of WP-Translations.org for the base of this repo.
 
 [grunt-potomo](https://github.com/axisthemes/grunt-potomo) by AxisThemes to generate automatically the .mo files.
 

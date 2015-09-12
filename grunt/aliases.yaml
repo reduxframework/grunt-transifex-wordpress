@@ -1,7 +1,9 @@
 # Grunt aliases
 ---
 # Checktextdomain and makepot task(s)
+
 'build:i18n':
+
 - 'checktextdomain'
 - 'makepot'
 - 'newer:potomo'
@@ -18,6 +20,9 @@ build:
 - 'clean'
 - 'copy'
 - 'compress'
+# Change/add textdomains
+updatedomains:
+- 'addtextdomain'
 # Default task
 default:
 - 'makepot'

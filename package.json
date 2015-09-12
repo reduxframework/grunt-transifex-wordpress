@@ -29,7 +29,8 @@
   "pull_percentage": "75",
   "pot": {
     "type": "wp-plugin",
-    "textdomain": "example-textdomain",
+    "textdomain": "textdomain",
+    "replace_textdomains": "'','textdomain'",
     "default_lang": "en_US",
     "include": [],
     "exclude": [],

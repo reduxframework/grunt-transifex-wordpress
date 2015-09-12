@@ -8,24 +8,24 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              https://passifookeca.com
+ * @link              https://dovy.io
  * @since             1.0.0
- * @package           Foo
+ * @package           Dovy
  *
  * @wordpress-plugin
- * Plugin Name:       Foo Plugin
- * Plugin URI:        http://foo.plugin
+ * Plugin Name:       Wordpress Example Transifex
+ * Plugin URI:        http://dovy.io
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
  * Version:           1.0.0
- * Author:            Mister Foo
- * Author URI:        https://passifookeca.com
+ * Author:            Dovy Paukstys
+ * Author URI:        https://dovy.io
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       foo
  * Domain Path:       /languages
  */
 
-__('I alert checktextdomain task');
+__('I alert checktextdomain task', 'textdomain');
 
 
 
@@ -77,3 +77,5 @@ function run_plugin_name() {
 
 }
 run_plugin_name();
+
+	include_once(dirname(__FILE__).'.example_translations.php');
