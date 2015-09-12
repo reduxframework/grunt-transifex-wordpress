@@ -1,5 +1,6 @@
 [![License](https://img.shields.io/badge/license-GPL--3.0%2B-red.svg?style=flat-square)](http://www.gnu.org/licenses/gpl-2.0.html)
 # Grunt Transifex WordPress #
+## Part of a presentation prepared for WordCamp SLC 2015 ##
 
 A set of grunt tasks to integrate i18n tools and Transifex to your WordPress plugin/theme Grunt workflow.
 
